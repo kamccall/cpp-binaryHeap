@@ -24,11 +24,41 @@ bheap::~bheap()
    // items.clear();
 }
 
+bool bheap::DeleteMin()
+{
+   if(size == 0) return false;
+
+   delete items[1];
+   items[1] = items[size];
+   size--;
+
+   BubbleDown(1);
+   return true;
+}
+
+void bheap::BubbleDown(int position)
+{
+   int child = position *2;
+   if (child > size) return;
+   if (child!= size && *items[child] > *items[child + 1])
+   {
+      child++;
+   }
+   if(*items[child] < *items[position])
+   {
+      int temp = *items[child];
+      *items[child] = *items[position];
+      *items[position] = temp;
+
+      BubbleDown(child);
+   }
+}
+
 void bheap::Display()
 {
    cout << "items.size: " << items.size() << endl;
    cout << "size value: " << GetSize() << endl;
-   for(int i=0; i < items.size(); i++)
+   for(int i=1; i < GetSize() + 1; i++)
    {
       // cout << "i: " << i << endl;
       cout << *items[i] << endl;
