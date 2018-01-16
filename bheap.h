@@ -10,10 +10,13 @@ private:
 public:
    bheap();
    ~bheap();
+   
+   bool DeleteMin();
+   void BubbleDown(int position);
+
    int  GetSize();
    int  GetVectorSize();
    void Insert(int* number);
    int* FindMin();
-   bool DeleteMin();
    void Display();
 };
